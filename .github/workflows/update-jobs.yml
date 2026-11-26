@@ -1,0 +1,66 @@
+name: Update job tracker
+
+on:
+  schedule:
+    - cron: "0 4,5,16,17 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: job-tracker-real-estate-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Gate on Toronto midnight/noon slot
+        id: gate
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          HOUR=$(TZ=America/Toronto date +%H)
+          DAY=$(TZ=America/Toronto date +%F)
+          if [[ "$HOUR" < "12" ]]; then SLOT="${DAY}-AM"; else SLOT="${DAY}-PM"; fi
+          LAST=$(cat last_slot.txt 2>/dev/null || echo "none")
+          echo "Toronto slot: $SLOT (last completed: $LAST, event: $EVENT_NAME)"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$SLOT" != "$LAST" ]; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+          fi
+          echo "slot=$SLOT" >> "$GITHUB_OUTPUT"
+      - name: Set up Python
+        if: steps.gate.outputs.run == 'yes'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tracker (scrape + store + render + build page)
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          JT_NO_PUBLISH: "1"
+          JT_BUILD_PAGE: "1"
+        run: python3 app.py
+      - name: Commit results if changed
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          SLOT: ${{ steps.gate.outputs.slot }}
+        run: |
+          rm -f seed.json
+          git config user.name "job-tracker bot"
+          git config user.email "actions@github.com"
+          cp index.html dashboard.html
+          printf '%s\n' "$SLOT" > last_slot.txt
+          git add index.html jobs.db dashboard.html last_slot.txt
+          git add -A seed.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update job dashboard (automated)"
+            git push
+          fi
