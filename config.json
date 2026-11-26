@@ -1,0 +1,122 @@
+{
+  "jobbank": [
+    {
+      "locationstring": "Toronto",
+      "searchstring": "real estate project manager"
+    },
+    {
+      "locationstring": "Toronto",
+      "searchstring": "project coordinator"
+    },
+    {
+      "locationstring": "Toronto",
+      "searchstring": "development coordinator"
+    },
+    {
+      "locationstring": "Toronto",
+      "searchstring": "real estate development"
+    },
+    {
+      "locationstring": "Toronto",
+      "searchstring": "land development coordinator"
+    },
+    {
+      "locationstring": "Toronto",
+      "searchstring": "real estate analyst"
+    }
+  ],
+  "linkedin": [
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate project manager"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate project coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "associate real estate project manager"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate development project manager"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "development project coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "development project manager"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "land development coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "land development project manager"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate development coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate development analyst"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "construction project coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "project coordinator real estate"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "development coordinator"
+    },
+    {
+      "location": "Toronto, Ontario, Canada",
+      "query": "real estate analyst"
+    },
+    {
+      "location": "Canada",
+      "query": "real estate project manager",
+      "remote": true
+    },
+    {
+      "location": "Canada",
+      "query": "real estate project coordinator",
+      "remote": true
+    },
+    {
+      "location": "Canada",
+      "query": "development project coordinator",
+      "remote": true
+    },
+    {
+      "location": "Canada",
+      "query": "real estate development analyst",
+      "remote": true
+    }
+  ],
+  "profile": "Junior Real Estate PM + development roles (real estate project manager/coordinator, development coordinator/analyst, land development) - Toronto/GTA + remote Canada",
+  "wwr_keywords": [],
+  "dice": [
+    {
+      "query": "real estate project manager"
+    },
+    {
+      "query": "development project coordinator"
+    },
+    {
+      "query": "real estate development analyst"
+    },
+    {
+      "query": "real estate project coordinator"
+    }
+  ]
+}
